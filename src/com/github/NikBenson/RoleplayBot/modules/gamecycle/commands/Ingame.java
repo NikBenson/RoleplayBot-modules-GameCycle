@@ -2,8 +2,10 @@ package com.github.NikBenson.RoleplayBot.modules.gamecycle.commands;
 
 import com.github.NikBenson.RoleplayBot.commands.Command;
 import com.github.NikBenson.RoleplayBot.commands.context.Context;
-import com.github.NikBenson.RoleplayBot.roleplay.GameManager;
-import com.github.NikBenson.RoleplayBot.roleplay.seasons.Season;
+import com.github.NikBenson.RoleplayBot.modules.gamecycle.GameManager;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+
+import static com.github.NikBenson.RoleplayBot.modules.gamecycle.GameCycle.getGameManager;
 
 public class Ingame extends Command<Context> {
 
@@ -19,22 +21,27 @@ public class Ingame extends Command<Context> {
 
 	@Override
 	public String execute(String command, Context context) {
-		String args = command.substring(7);
+		GameManager gameManager = getGameManager(((MessageReceivedEvent) context.getParams().get("event")).getGuild());
+		if(gameManager != null) {
+			String args = command.substring(7);
 
-		String special = executeSpecial(args);
-		if(special != null) {
-			return special;
+			String special = executeSpecial(args, gameManager);
+			if (special != null) {
+				return special;
+			}
+
+			String result = gameManager.getSeason().get(args);
+
+			if (result == null) return String.format("%s not found!", args);
+			else return result;
 		}
 
-		String result = Season.getCurrent().get(args);
-
-		if(result == null) return String.format("%s not found!", args);
-		else return result;
+		return "Module not activated!";
 	}
 
-	private String executeSpecial(String args) {
+	private String executeSpecial(String args, GameManager gameManager) {
 		if(args.equals("day")) {
-			return String.valueOf(GameManager.getInstanceOrCreate().getDay());
+			return String.valueOf(gameManager.getDay());
 		} else if(args.matches("time( \"[. :-GyMwWDdFEuaHkKhmsSzZX]*\")?")) {
 			String pattern = "HH:mm";
 
@@ -42,7 +49,7 @@ public class Ingame extends Command<Context> {
 				pattern = args.substring(7, args.length() - 2);
 			}
 
-			return GameManager.getInstanceOrCreate().getTime(pattern);
+			return gameManager.getTime(pattern);
 		} else {
 			return null;
 		}

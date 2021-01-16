@@ -1,5 +1,8 @@
 package com.github.NikBenson.RoleplayBot.modules.gamecycle;
 
+import com.github.NikBenson.RoleplayBot.modules.gamecycle.ChooseRandom;
+import com.github.NikBenson.RoleplayBot.modules.gamecycle.Cycled;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -30,7 +33,7 @@ public class Seasons {
 		getCurrent().next(passedUpdates);
 	}
 
-	private class Season {
+	public class Season {
 		private final long length;
 		private long time = 1;
 

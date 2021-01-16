@@ -40,6 +40,6 @@ public class ChooseRandom extends Cycled {
 			random -= probabilities.get(i);
 		}
 
-		setCurrent(i - 1);
+		super.setCurrent(i - 1);
 	}
 }

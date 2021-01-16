@@ -3,7 +3,7 @@ package com.github.NikBenson.RoleplayBot.modules.gamecycle;
 import com.github.NikBenson.RoleplayBot.configurations.ConfigurationManager;
 import com.github.NikBenson.RoleplayBot.configurations.ConfigurationPaths;
 import com.github.NikBenson.RoleplayBot.configurations.JSONConfigured;
-import com.github.NikBenson.RoleplayBot.roleplay.seasons.Season;
+import net.dv8tion.jda.api.entities.Guild;
 import org.jetbrains.annotations.NotNull;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -18,17 +18,28 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class GameManager implements JSONConfigured {
+	private final Guild GUILD;
+	private Seasons seasons;
+
 	private Date startedAt;
 	private long dayLengthInHours;
 	private long day = 0;
 	private Date currentDayStartedAt;
 	private long refreshDelayInHours;
 
-	public GameManager() {
+	Timer timer = new Timer();
+
+	public GameManager(Guild guild) {
+		GUILD = guild;
+	}
+
+	public Seasons.Season getSeason() {
+		return seasons.getCurrent();
 	}
 
 	private void registerRefreshTimers() {
-		Timer timer = new Timer();
+		timer.cancel();
+		timer = new Timer();
 
 		Date disabledUntil = Date.from(LocalDateTime.now().atZone(ZoneId.of("UTC")).toInstant().plusSeconds(5));
 
@@ -49,7 +60,7 @@ public class GameManager implements JSONConfigured {
 			public void run() {
 				Date now = Date.from(LocalDateTime.now().atZone(ZoneId.of("UTC")).toInstant());
 				if(now.getTime() > disabledUntil.getTime()) {
-					Season.update();
+					seasons.update();
 				}
 			}
 		}, startedAt, refreshDelayInMilliseconds);
@@ -99,7 +110,7 @@ public class GameManager implements JSONConfigured {
 
 	@Override
 	public @NotNull File getConfigPath() {
-		return new File(ConfigurationManager.getInstance().getConfigurationRootPath(), ConfigurationPaths.GAME_CYCLE_FILE);
+		return new File(ConfigurationManager.getInstance().getConfigurationRootPath(GUILD), ConfigurationPaths.GAME_CYCLE_FILE);
 	}
 
 	@Override
@@ -115,7 +126,7 @@ public class GameManager implements JSONConfigured {
 		refreshDelayInHours = (long) json.getOrDefault("refreshDelay", 6L);
 
 		long passedUpdates = (now.getTime() - startedAt.getTime()) / (refreshDelayInHours*60*60*1000);
-		Season.createSeasons((JSONArray) json.get("seasons"), passedUpdates);
+		seasons = new Seasons((JSONArray) json.get("seasons"), passedUpdates);
 
 		registerRefreshTimers();
 		calculateDay();
