@@ -1,17 +1,16 @@
 package com.github.NikBenson.RoleplayBot.modules.gamecycle.commands;
 
 import com.github.NikBenson.RoleplayBot.commands.Command;
-import com.github.NikBenson.RoleplayBot.commands.context.Context;
+import com.github.NikBenson.RoleplayBot.commands.context.GuildContext;
 import com.github.NikBenson.RoleplayBot.modules.gamecycle.GameManager;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.entities.Guild;
 
 import static com.github.NikBenson.RoleplayBot.modules.gamecycle.GameCycle.getGameManager;
 
-public class Ingame extends Command<Context> {
-
+public class Ingame extends Command<GuildContext> {
 	@Override
-	public Class<Context> getContext() {
-		return Context.class;
+	public Class<GuildContext> getContext() {
+		return GuildContext.class;
 	}
 
 	@Override
@@ -20,8 +19,8 @@ public class Ingame extends Command<Context> {
 	}
 
 	@Override
-	public String execute(String command, Context context) {
-		GameManager gameManager = getGameManager(((MessageReceivedEvent) context.getParams().get("event")).getGuild());
+	public String execute(String command, GuildContext context) {
+		GameManager gameManager = getGameManager(((Guild) context.getParams().get("guild")));
 		if(gameManager != null) {
 			String args = command.substring(7);
 
