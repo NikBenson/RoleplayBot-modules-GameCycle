@@ -5,7 +5,7 @@ import com.github.NikBenson.RoleplayBot.commands.context.GuildContext;
 import com.github.NikBenson.RoleplayBot.modules.gamecycle.GameManager;
 import net.dv8tion.jda.api.entities.Guild;
 
-import static com.github.NikBenson.RoleplayBot.modules.gamecycle.GameCycle.getGameManager;
+import static com.github.NikBenson.RoleplayBot.modules.gamecycle.GameCycleModule.getGameManager;
 
 public class Ingame extends Command<GuildContext> {
 	@Override
