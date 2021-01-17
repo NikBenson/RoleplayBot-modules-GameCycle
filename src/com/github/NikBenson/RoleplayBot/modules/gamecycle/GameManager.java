@@ -128,7 +128,7 @@ public class GameManager implements JSONConfigured {
 		long passedUpdates = (now.getTime() - startedAt.getTime()) / (refreshDelayInHours*60*60*1000);
 		seasons = new Seasons((JSONArray) json.get("seasons"), passedUpdates);
 
-		registerRefreshTimers();
 		calculateDay();
+		registerRefreshTimers();
 	}
 }
