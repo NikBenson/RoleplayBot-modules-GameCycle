@@ -4,9 +4,7 @@ import com.github.NikBenson.RoleplayBot.commands.Command;
 import com.github.NikBenson.RoleplayBot.configurations.ConfigurationManager;
 import com.github.NikBenson.RoleplayBot.modules.RoleplayBotModule;
 import net.dv8tion.jda.api.entities.Guild;
-import org.json.simple.parser.ParseException;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
