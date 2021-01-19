@@ -131,4 +131,9 @@ public class GameManager implements JSONConfigured {
 		calculateDay();
 		registerRefreshTimers();
 	}
+
+	@Override
+	public Guild getGuild() {
+		return GUILD;
+	}
 }

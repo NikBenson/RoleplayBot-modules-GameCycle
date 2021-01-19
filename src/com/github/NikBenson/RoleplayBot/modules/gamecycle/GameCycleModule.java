@@ -42,6 +42,11 @@ public class GameCycleModule implements RoleplayBotModule {
 		managers.remove(guild);
 	}
 
+	@Override
+	public Guild[] getLoaded() {
+		return managers.keySet().toArray(new Guild[0]);
+	}
+
 	public static GameManager getGameManager(Guild guild) {
 		return instance.managers.get(guild);
 	}
