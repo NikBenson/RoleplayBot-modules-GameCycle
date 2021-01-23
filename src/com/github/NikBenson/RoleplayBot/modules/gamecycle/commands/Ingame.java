@@ -1,11 +1,11 @@
-package com.github.NikBenson.RoleplayBot.modules.gamecycle.commands;
+package com.github.nikbenson.roleplaybot.modules.gamecycle.commands;
 
-import com.github.NikBenson.RoleplayBot.commands.Command;
-import com.github.NikBenson.RoleplayBot.commands.context.GuildContext;
-import com.github.NikBenson.RoleplayBot.modules.gamecycle.GameManager;
+import com.github.nikbenson.roleplaybot.commands.Command;
+import com.github.nikbenson.roleplaybot.commands.context.GuildContext;
+import com.github.nikbenson.roleplaybot.modules.gamecycle.GameManager;
 import net.dv8tion.jda.api.entities.Guild;
 
-import static com.github.NikBenson.RoleplayBot.modules.gamecycle.GameCycleModule.getGameManager;
+import static com.github.nikbenson.roleplaybot.modules.gamecycle.GameCycleModule.getGameManager;
 
 public class Ingame extends Command<GuildContext> {
 	@Override

@@ -1,7 +1,7 @@
-package com.github.NikBenson.RoleplayBot.modules.gamecycle;
+package com.github.nikbenson.roleplaybot.modules.gamecycle;
 
-import com.github.NikBenson.RoleplayBot.modules.gamecycle.ChooseRandom;
-import com.github.NikBenson.RoleplayBot.modules.gamecycle.Cycled;
+import com.github.nikbenson.roleplaybot.modules.gamecycle.ChooseRandom;
+import com.github.nikbenson.roleplaybot.modules.gamecycle.Cycled;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;

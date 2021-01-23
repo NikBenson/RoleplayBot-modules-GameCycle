@@ -1,8 +1,8 @@
-package com.github.NikBenson.RoleplayBot.modules.gamecycle;
+package com.github.nikbenson.roleplaybot.modules.gamecycle;
 
-import com.github.NikBenson.RoleplayBot.commands.Command;
-import com.github.NikBenson.RoleplayBot.configurations.ConfigurationManager;
-import com.github.NikBenson.RoleplayBot.modules.RoleplayBotModule;
+import com.github.nikbenson.roleplaybot.commands.Command;
+import com.github.nikbenson.roleplaybot.configurations.ConfigurationManager;
+import com.github.nikbenson.roleplaybot.modules.RoleplayBotModule;
 import net.dv8tion.jda.api.entities.Guild;
 
 import java.util.HashMap;
@@ -14,7 +14,7 @@ public class GameCycleModule implements RoleplayBotModule {
 
 	public GameCycleModule() {
 		instance = this;
-		Command.register(new com.github.NikBenson.RoleplayBot.modules.gamecycle.commands.Ingame());
+		Command.register(new com.github.nikbenson.roleplaybot.modules.gamecycle.commands.Ingame());
 	}
 
 	@Override

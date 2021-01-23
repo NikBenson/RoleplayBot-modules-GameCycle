@@ -1,4 +1,4 @@
-package com.github.NikBenson.RoleplayBot.modules.gamecycle;
+package com.github.nikbenson.roleplaybot.modules.gamecycle;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;

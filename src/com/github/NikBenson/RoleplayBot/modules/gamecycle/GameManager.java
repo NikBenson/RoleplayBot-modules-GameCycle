@@ -1,8 +1,8 @@
-package com.github.NikBenson.RoleplayBot.modules.gamecycle;
+package com.github.nikbenson.roleplaybot.modules.gamecycle;
 
-import com.github.NikBenson.RoleplayBot.configurations.ConfigurationManager;
-import com.github.NikBenson.RoleplayBot.configurations.ConfigurationPaths;
-import com.github.NikBenson.RoleplayBot.configurations.JSONConfigured;
+import com.github.nikbenson.roleplaybot.configurations.ConfigurationManager;
+import com.github.nikbenson.roleplaybot.configurations.ConfigurationPaths;
+import com.github.nikbenson.roleplaybot.configurations.JSONConfigured;
 import net.dv8tion.jda.api.entities.Guild;
 import org.jetbrains.annotations.NotNull;
 import org.json.simple.JSONArray;
